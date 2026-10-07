@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const wedding = window.WEDDING || {};
+const wedding = typeof WEDDING !== "undefined" ? WEDDING : {};
 
   /* =====================================================
      ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ

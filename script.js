@@ -1,237 +1,576 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const c = window.WEDDING || {};
+  const wedding = window.WEDDING || {};
 
-  /* =========================
-     ОСНОВНАЯ ИНФОРМАЦИЯ
-  ========================= */
+  /* =====================================================
+     ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ
+  ===================================================== */
 
-  const setText = (selector, value) => {
-    const el = document.querySelector(selector);
-    if (el && value !== undefined) el.textContent = value;
-  };
+  function setText(selector, text) {
+    const element = document.querySelector(selector);
 
-  setText("#groomName", c.groom);
-  setText("#brideName", c.bride);
-  setText("#heroDate", c.dateLong);
-  setText("#welcomeTitle", c.welcomeTitle);
-  setText("#welcomeText", c.welcomeText);
-  setText("#placeName", c.placeName);
-  setText("#placeAddress", c.placeAddress);
-  setText("#dressText", c.dressText);
+    if (element && text !== undefined) {
+      element.textContent = text;
+    }
+  }
 
-  /* =========================
+
+  /* =====================================================
+     ДАННЫЕ СВАДЬБЫ
+  ===================================================== */
+
+  setText(".hero-date", wedding.dateLong);
+  setText(".hero-location", "САМАРА");
+  setText(".venue-city", wedding.placeAddress);
+  setText(".venue-address", wedding.placeAddress);
+  setText("#dressText", wedding.dressText);
+
+
+  /* =====================================================
      КОНВЕРТ
-  ========================= */
+  ===================================================== */
 
-  const envelopeScreen = document.querySelector("#envelopeScreen");
+  const intro = document.querySelector("#intro");
   const envelope = document.querySelector("#envelope");
-  const openEnvelope = document.querySelector("#openEnvelope");
+  const seal = document.querySelector("#openEnvelope");
 
-  if (envelopeScreen && envelope && openEnvelope) {
+  let envelopeOpened = false;
+
+  if (intro && envelope && seal) {
 
     document.body.style.overflow = "hidden";
 
-    openEnvelope.addEventListener("click", function (event) {
+    seal.addEventListener("click", (event) => {
+
       event.preventDefault();
       event.stopPropagation();
 
+      if (envelopeOpened) return;
+
+      envelopeOpened = true;
+
       envelope.classList.add("open");
 
+      /*
+        Сначала открывается клапан,
+        потом карточка выходит наружу,
+        потом исчезает весь первый экран.
+      */
+
       setTimeout(() => {
-        envelopeScreen.classList.add("hidden");
+        intro.classList.add("hidden");
+
         document.body.style.overflow = "";
-      }, 1200);
+
+      }, 1500);
+
     });
   }
 
-  /* =========================
-     КАЛЕНДАРЬ
-  ========================= */
+
+  /* =====================================================
+     КАЛЕНДАРЬ — МАЙ 2027
+  ===================================================== */
 
   const calendar = document.querySelector("#calendar");
 
-  if (calendar && c.dateISO) {
+  if (calendar) {
 
-    const weddingDate = new Date(c.dateISO);
+    const weddingDate = new Date(
+      wedding.dateISO || "2027-05-26T12:00:00+04:00"
+    );
 
     const year = weddingDate.getFullYear();
     const month = weddingDate.getMonth();
-    const weddingDay = weddingDate.getDate();
+    const selectedDay = weddingDate.getDate();
 
-    const monthNames = [
-      "Январь", "Февраль", "Март", "Апрель",
-      "Май", "Июнь", "Июль", "Август",
-      "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+    const months = [
+      "Январь",
+      "Февраль",
+      "Март",
+      "Апрель",
+      "Май",
+      "Июнь",
+      "Июль",
+      "Август",
+      "Сентябрь",
+      "Октябрь",
+      "Ноябрь",
+      "Декабрь"
     ];
 
-    const weekDays = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
+    const weekdays = [
+      "ПН",
+      "ВТ",
+      "СР",
+      "ЧТ",
+      "ПТ",
+      "СБ",
+      "ВС"
+    ];
 
-    let html = `
+    let firstDay = new Date(year, month, 1).getDay();
+
+    /*
+      JS считает воскресенье первым.
+      Нам нужен понедельник.
+    */
+
+    firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+    const daysInMonth =
+      new Date(year, month + 1, 0).getDate();
+
+    let calendarHTML = `
+
       <div class="calendar-month">
-        ${monthNames[month]} ${year}
+        ${months[month]}
+        <span>${year}</span>
       </div>
 
       <div class="calendar-week">
-        ${weekDays.map(day => `<div>${day}</div>`).join("")}
+        ${weekdays.map(day => `<span>${day}</span>`).join("")}
       </div>
 
       <div class="calendar-days">
     `;
 
-    let firstDay = new Date(year, month, 1).getDay();
-
-    // Делаем понедельник первым днём недели
-    firstDay = firstDay === 0 ? 6 : firstDay - 1;
 
     for (let i = 0; i < firstDay; i++) {
-      html += `<div class="empty"></div>`;
+      calendarHTML += `<span></span>`;
     }
 
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     for (let day = 1; day <= daysInMonth; day++) {
 
-      if (day === weddingDay) {
-        html += `
-          <div class="wedding-day">
-            <span class="calendar-heart">
-              <b>${day}</b>
-              <i>♥</i>
-            </span>
-          </div>
+      if (day === selectedDay) {
+
+        calendarHTML += `
+          <span class="chosen-day">
+            <b>${day}</b>
+            <i>♥</i>
+          </span>
         `;
+
       } else {
-        html += `<div>${day}</div>`;
+
+        calendarHTML += `
+          <span>${day}</span>
+        `;
       }
     }
 
-    html += `</div>`;
 
-    calendar.innerHTML = html;
+    calendarHTML += `
+      </div>
+    `;
+
+    calendar.innerHTML = calendarHTML;
   }
 
-  /* =========================
+
+  /* =====================================================
      РАСПИСАНИЕ
-  ========================= */
+  ===================================================== */
 
   const timeline = document.querySelector("#timeline");
 
-  if (timeline && Array.isArray(c.timeline)) {
+  if (timeline && Array.isArray(wedding.timeline)) {
+
+    const items = wedding.timeline;
 
     timeline.innerHTML = `
-      <div class="timeline-line">
-        <div class="timeline-heart">♥</div>
+
+      <div class="timeline-track">
+
+        <div class="timeline-progress"></div>
+
+        <div class="timeline-heart">
+          ♥
+        </div>
+
       </div>
 
       <div class="timeline-items">
-        ${c.timeline.map(item => `
-          <div class="timeline-item">
-            <div class="timeline-time">${item[0]}</div>
 
-            <div class="timeline-dot">♥</div>
+        ${items.map((item, index) => `
 
-            <div class="timeline-content">
-              <h3>${item[1]}</h3>
-              <p>${item[2]}</p>
+          <article class="timeline-item">
+
+            <time>
+              ${item[0]}
+            </time>
+
+            <div class="timeline-dot">
+              ${String(index + 1).padStart(2, "0")}
             </div>
-          </div>
+
+            <div class="timeline-info">
+
+              <h3>
+                ${item[1]}
+              </h3>
+
+              <p>
+                ${item[2]}
+              </p>
+
+            </div>
+
+          </article>
+
         `).join("")}
+
       </div>
     `;
   }
 
-  /* =========================
-     ССЫЛКА НА КАРТУ
-  ========================= */
+
+  /* =====================================================
+     КАРТА
+  ===================================================== */
 
   const mapLink = document.querySelector("#mapLink");
 
-  if (mapLink && c.mapUrl) {
-    mapLink.href = c.mapUrl;
+  if (mapLink && wedding.mapUrl) {
+
+    mapLink.href = wedding.mapUrl;
+
     mapLink.target = "_blank";
+
     mapLink.rel = "noopener noreferrer";
   }
 
-  /* =========================
+
+  /* =====================================================
      ОБРАТНЫЙ ОТСЧЁТ
-  ========================= */
+  ===================================================== */
 
-  const countdown = document.querySelector("#countdown");
+  const daysElement =
+    document.querySelector("#countDays");
 
-  const countDays = document.querySelector("#countDays");
-  const countHours = document.querySelector("#countHours");
-  const countMinutes = document.querySelector("#countMinutes");
-  const countSeconds = document.querySelector("#countSeconds");
+  const hoursElement =
+    document.querySelector("#countHours");
+
+  const minutesElement =
+    document.querySelector("#countMinutes");
+
+  const secondsElement =
+    document.querySelector("#countSeconds");
+
 
   function updateCountdown() {
 
-    if (!c.dateISO) return;
+    const target = new Date(
+      wedding.dateISO || "2027-05-26T12:00:00+04:00"
+    ).getTime();
 
-    const target = new Date(c.dateISO).getTime();
     const now = Date.now();
 
     let difference = target - now;
 
-    if (difference <= 0) {
+    if (difference < 0) {
       difference = 0;
     }
 
-    const days = Math.floor(difference / 86400000);
+
+    const days = Math.floor(
+      difference / (1000 * 60 * 60 * 24)
+    );
+
 
     const hours = Math.floor(
-      (difference % 86400000) / 3600000
+      (difference %
+        (1000 * 60 * 60 * 24))
+      /
+      (1000 * 60 * 60)
     );
+
 
     const minutes = Math.floor(
-      (difference % 3600000) / 60000
+      (difference %
+        (1000 * 60 * 60))
+      /
+      (1000 * 60)
     );
+
 
     const seconds = Math.floor(
-      (difference % 60000) / 1000
+      (difference %
+        (1000 * 60))
+      /
+      1000
     );
 
-    if (countDays) countDays.textContent = days;
-    if (countHours) countHours.textContent = String(hours).padStart(2, "0");
-    if (countMinutes) countMinutes.textContent = String(minutes).padStart(2, "0");
-    if (countSeconds) countSeconds.textContent = String(seconds).padStart(2, "0");
+
+    if (daysElement) {
+      daysElement.textContent = days;
+    }
+
+    if (hoursElement) {
+      hoursElement.textContent =
+        String(hours).padStart(2, "0");
+    }
+
+    if (minutesElement) {
+      minutesElement.textContent =
+        String(minutes).padStart(2, "0");
+    }
+
+    if (secondsElement) {
+      secondsElement.textContent =
+        String(seconds).padStart(2, "0");
+    }
   }
 
-  if (countdown) {
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
 
-  /* =========================
-     RSVP
-  ========================= */
+  updateCountdown();
 
-  const form = document.querySelector("#rsvp");
+  setInterval(updateCountdown, 1000);
 
-  if (form) {
 
-    form.addEventListener("submit", function (event) {
+  /* =====================================================
+     АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ
+  ===================================================== */
 
-      event.preventDefault();
+  const animatedElements =
+    document.querySelectorAll(
+      ".section-inner > *, .timeline-item, .venue-content, .chat-inner, .countdown-inner, .final-inner"
+    );
 
-      const formData = new FormData(form);
 
-      const name = formData.get("name") || "";
-      const attendance = formData.get("attendance") || "";
-      const guests = formData.get("guests") || "";
-      const food = formData.get("food") || "";
-      const comment = formData.get("comment") || "";
+  if ("IntersectionObserver" in window) {
 
-      if (!c.rsvpEmail) {
-        alert("Анкета заполнена ❤️");
-        return;
-      }
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
 
-      const subject = encodeURIComponent(
-        `Свадьба Артём & Варвара — ${name}`
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              observer.unobserve(entry.target);
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
       );
 
-      const body = encodeURIComponent(
+
+    animatedElements.forEach((element) => {
+
+      observer.observe(element);
+
+    });
+
+  } else {
+
+    animatedElements.forEach((element) => {
+
+      element.classList.add("visible");
+
+    });
+  }
+
+
+  /* =====================================================
+     СЕРДЕЧКО-ПОЛЗУНОК НА РАСПИСАНИИ
+  ===================================================== */
+
+  const timelineSection =
+    document.querySelector(".timeline-section");
+
+  const timelineHeart =
+    document.querySelector(".timeline-heart");
+
+  const timelineProgress =
+    document.querySelector(".timeline-progress");
+
+
+  function updateTimeline() {
+
+    if (
+      !timelineSection ||
+      !timelineHeart ||
+      !timelineProgress
+    ) {
+      return;
+    }
+
+
+    const rect =
+      timelineSection.getBoundingClientRect();
+
+    const viewportHeight =
+      window.innerHeight;
+
+
+    /*
+      Сердечко начинает движение,
+      когда расписание появляется
+      примерно в середине экрана.
+    */
+
+    const start =
+      viewportHeight * 0.72;
+
+
+    const end =
+      viewportHeight * 0.18;
+
+
+    const total =
+      rect.height - start + end;
+
+
+    let progress =
+      (start - rect.top) / total;
+
+
+    progress =
+      Math.max(
+        0,
+        Math.min(1, progress)
+      );
+
+
+    timelineHeart.style.top =
+      `${progress * 100}%`;
+
+
+    timelineProgress.style.height =
+      `${progress * 100}%`;
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateTimeline,
+    { passive: true }
+  );
+
+
+  window.addEventListener(
+    "resize",
+    updateTimeline
+  );
+
+
+  updateTimeline();
+
+
+  /* =====================================================
+     ПЛАВНАЯ ПРОКРУТКА
+  ===================================================== */
+
+  document
+    .querySelectorAll('a[href^="#"]')
+    .forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        (event) => {
+
+          const id =
+            link.getAttribute("href");
+
+          if (!id || id === "#") {
+            return;
+          }
+
+
+          const target =
+            document.querySelector(id);
+
+          if (!target) {
+            return;
+          }
+
+
+          event.preventDefault();
+
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+      );
+    });
+
+
+  /* =====================================================
+     RSVP
+  ===================================================== */
+
+  const rsvp =
+    document.querySelector("#rsvp");
+
+
+  if (rsvp) {
+
+    rsvp.addEventListener(
+      "submit",
+      (event) => {
+
+        event.preventDefault();
+
+
+        const data =
+          new FormData(rsvp);
+
+
+        const name =
+          data.get("name") || "";
+
+        const attendance =
+          data.get("attendance") || "";
+
+        const guests =
+          data.get("guests") || "";
+
+        const food =
+          data.get("food") || "";
+
+        const comment =
+          data.get("comment") || "";
+
+
+        /*
+          Пока email не указан,
+          показываем красивое сообщение.
+        */
+
+        if (!wedding.rsvpEmail) {
+
+          alert(
+            "Спасибо, " +
+            name +
+            "! Ваш ответ принят ❤️"
+          );
+
+          rsvp.reset();
+
+          return;
+        }
+
+
+        const subject =
+          encodeURIComponent(
+            `Свадьба Артём & Варвара — ${name}`
+          );
+
+
+        const body =
+          encodeURIComponent(
+
 `Имя: ${name}
 
 Присутствие: ${attendance}
@@ -242,134 +581,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
 Комментарий:
 ${comment}`
-      );
+          );
 
-      window.location.href =
-        `mailto:${c.rsvpEmail}?subject=${subject}&body=${body}`;
-    });
-  }
 
-  /* =========================
-     АНИМАЦИИ ПОЯВЛЕНИЯ
-  ========================= */
+        window.location.href =
+          `mailto:${wedding.rsvpEmail}?subject=${subject}&body=${body}`;
 
-  const animatedElements = document.querySelectorAll(
-    ".reveal, .section, .timeline-item, .dress-card, .rsvp-card"
-  );
-
-  if ("IntersectionObserver" in window) {
-
-    const observer = new IntersectionObserver(
-      entries => {
-
-        entries.forEach(entry => {
-
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-
-        });
-
-      },
-      {
-        threshold: 0.12
       }
     );
-
-    animatedElements.forEach(el => observer.observe(el));
-  } else {
-
-    animatedElements.forEach(el => {
-      el.classList.add("visible");
-    });
-
   }
 
-  /* =========================
-     ПЛАВНАЯ ПРОКРУТКА
-  ========================= */
 
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
+  /* =====================================================
+     ДЕКОРАТИВНЫЕ СЕРДЕЧКИ ПРИ КЛИКЕ
+  ===================================================== */
 
-    link.addEventListener("click", function (event) {
+  document.addEventListener(
+    "click",
+    (event) => {
 
-      const id = this.getAttribute("href");
+      if (
+        event.target.closest("input") ||
+        event.target.closest("textarea") ||
+        event.target.closest("select") ||
+        event.target.closest("button") ||
+        event.target.closest("a")
+      ) {
+        return;
+      }
 
-      if (!id || id === "#") return;
 
-      const target = document.querySelector(id);
+      const heart =
+        document.createElement("span");
 
-      if (!target) return;
 
-      event.preventDefault();
+      heart.className =
+        "click-heart";
 
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
 
-    });
+      heart.textContent =
+        "♥";
 
-  });
 
-  /* =========================
-     СЕРДЕЧКИ ПРИ КЛИКЕ
-  ========================= */
+      heart.style.left =
+        `${event.clientX}px`;
 
-  document.addEventListener("click", function (event) {
 
-    if (
-      event.target.closest("#openEnvelope") ||
-      event.target.closest("button") ||
-      event.target.closest("input") ||
-      event.target.closest("textarea") ||
-      event.target.closest("select")
-    ) {
-      return;
+      heart.style.top =
+        `${event.clientY}px`;
+
+
+      document.body.appendChild(
+        heart
+      );
+
+
+      setTimeout(() => {
+
+        heart.remove();
+
+      }, 1200);
+
     }
-
-    const heart = document.createElement("span");
-
-    heart.className = "click-heart";
-    heart.textContent = "♥";
-
-    heart.style.left = `${event.clientX}px`;
-    heart.style.top = `${event.clientY}px`;
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 1200);
-
-  });
-
-  /* =========================
-     СЕРДЕЧКО НА ЛИНИИ РАСПИСАНИЯ
-  ========================= */
-
-  const timelineSection = document.querySelector(".timeline");
-  const timelineHeart = document.querySelector(".timeline-heart");
-
-  function moveTimelineHeart() {
-
-    if (!timelineSection || !timelineHeart) return;
-
-    const rect = timelineSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    const progress =
-      (windowHeight * 0.7 - rect.top) /
-      (rect.height - windowHeight * 0.3);
-
-    const value = Math.max(0, Math.min(1, progress));
-
-    timelineHeart.style.top = `${value * 100}%`;
-  }
-
-  window.addEventListener("scroll", moveTimelineHeart);
-  window.addEventListener("resize", moveTimelineHeart);
-
-  moveTimelineHeart();
+  );
 
 });

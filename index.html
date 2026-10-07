@@ -3,820 +3,383 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="theme-color" content="#4b5137">
+  <meta name="description" content="Свадебное приглашение Артём & Варвара — 26 мая 2027">
   <title>Артём & Варвара · 26.05.2027</title>
-
-  <meta
-    name="description"
-    content="Приглашение на свадьбу Артёма и Варвары"
-  >
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-  <!-- =========================================
-       INTRO / КОНВЕРТ
-  ========================================== -->
-
-  <div class="intro" id="intro">
-
-    <div class="intro-grain"></div>
-
-    <div class="intro-decor intro-decor-left">✦</div>
-    <div class="intro-decor intro-decor-right">✦</div>
-
-    <div class="envelope-wrap">
-
-      <div class="envelope" id="envelope">
-
-        <!-- задняя часть -->
-        <div class="envelope-back"></div>
-
-        <!-- письмо внутри -->
-        <div class="invitation-card">
-
-          <div class="card-border">
-
-            <div class="card-top">
-              <span>WEDDING INVITATION</span>
-            </div>
-
-            <div class="card-names">
-              <span>Артём</span>
-              <em>&</em>
-              <span>Варвара</span>
-            </div>
-
-            <div class="card-line"></div>
-
-            <div class="card-date">
-              26 · 05 · 2027
-            </div>
-
-          </div>
-
+  <!-- =====================================================
+       ПЕРВЫЙ ЭКРАН — КОНВЕРТ
+       ===================================================== -->
+  <section class="intro" id="intro">
+<div class="intro-noise"></div>
+<div class="intro-top">
+  <span>WEDDING INVITATION</span>
+  <span>26 · 05 · 2027</span>
+</div>
+<div class="envelope-scene">
+  <div class="envelope" id="envelope">
+    <!-- Карточка внутри конверта -->
+    <div class="invitation-card">
+      <div class="card-inner">
+        <div class="card-small">
+          WEDDING INVITATION
         </div>
-
-        <!-- клапан -->
-        <div class="envelope-flap"></div>
-
-        <!-- передняя часть -->
-        <div class="envelope-front">
-
-          <div class="envelope-front-line"></div>
-
-          <div class="seal" id="openEnvelope">
-            <span>♥</span>
-          </div>
-
+        <div class="card-names">
+          <span>Артём</span>
+          <span class="card-amp">&</span>
+          <span>Варвара</span>
         </div>
-
-      </div>
-
-      <p class="open-hint">
-        <span>нажмите на печать</span>
-      </p>
-
-    </div>
-
-    <div class="intro-bottom">
-      <span>АРТЁМ & ВАРВАРА</span>
-      <span>26 / 05 / 2027</span>
-    </div>
-
-  </div>
-
-
-  <!-- =========================================
-       ОСНОВНОЙ САЙТ
-  ========================================== -->
-
-  <main id="weddingSite" class="wedding-site">
-
-
-    <!-- =======================================
-         HERO
-    ======================================== -->
-
-    <section class="hero section-paper">
-
-      <div class="paper-grain"></div>
-
-      <div class="hero-ornament hero-ornament-top">
-        ✦
-      </div>
-
-      <div class="hero-inner">
-
-        <p class="eyebrow">
-          НАША ИСТОРИЯ ПРОДОЛЖАЕТСЯ
-        </p>
-
-        <h1>
-          Артём
-          <span>&</span>
-          Варвара
-        </h1>
-
-        <div class="hero-divider">
-          <i></i>
-          <span>♥</span>
-          <i></i>
-        </div>
-
-        <p class="hero-date">
-          26 МАЯ 2027
-        </p>
-
-        <p class="hero-location">
-          САМАРА
-        </p>
-
-      </div>
-
-      <div class="hero-ornament hero-ornament-bottom">
-        ✦
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         WELCOME
-    ======================================== -->
-
-    <section class="welcome section-paper">
-
-      <div class="section-number">
-        01
-      </div>
-
-      <div class="section-inner">
-
-        <p class="eyebrow">
-          ДОРОГИЕ ГОСТИ
-        </p>
-
-        <h2>
-          Будем рады<br>
-          разделить этот день<br>
-          с вами
-        </h2>
-
-        <div class="ornament">
-          <span></span>
-          <b>♥</b>
-          <span></span>
-        </div>
-
-        <p class="text">
-          Приглашаем вас стать частью
-          нашего самого важного дня.
-          Нам очень хочется провести его
-          рядом с теми, кого мы любим.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         DATE / CALENDAR
-    ======================================== -->
-
-    <section class="date-section section-paper">
-
-      <div class="section-number">
-        02
-      </div>
-
-      <div class="section-inner">
-
-        <p class="eyebrow">
-          СОХРАНИТЕ ДАТУ
-        </p>
-
-        <h2>
-          Май
-          <span>2027</span>
-        </h2>
-
-        <div class="calendar" id="calendar">
-
-          <div class="calendar-week">
-            <span>ПН</span>
-            <span>ВТ</span>
-            <span>СР</span>
-            <span>ЧТ</span>
-            <span>ПТ</span>
-            <span>СБ</span>
-            <span>ВС</span>
-          </div>
-
-          <div class="calendar-days">
-
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span>1</span>
-            <span>2</span>
-
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-            <span>6</span>
-            <span>7</span>
-            <span>8</span>
-            <span>9</span>
-
-            <span>10</span>
-            <span>11</span>
-            <span>12</span>
-            <span>13</span>
-            <span>14</span>
-            <span>15</span>
-            <span>16</span>
-
-            <span>17</span>
-            <span>18</span>
-            <span>19</span>
-            <span>20</span>
-            <span>21</span>
-            <span>22</span>
-            <span>23</span>
-
-            <span>24</span>
-
-            <span class="chosen-day">
-              <b>26</b>
-              <i>♥</i>
-            </span>
-
-            <span>27</span>
-            <span>28</span>
-            <span>29</span>
-            <span>30</span>
-
-            <span>31</span>
-
-          </div>
-
-        </div>
-
-        <p class="date-caption">
-          Среда
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         VENUE
-    ======================================== -->
-
-    <section class="venue section-dark">
-
-      <div class="venue-image">
-
-        <div class="venue-image-overlay"></div>
-
-        <div class="venue-image-text">
-          <span>THE PLACE</span>
-          <strong>6—25</strong>
-        </div>
-
-      </div>
-
-      <div class="venue-content">
-
-        <p class="eyebrow">
-          МЕСТО ВСТРЕЧИ
-        </p>
-
-        <h2>
-          6—25
-        </h2>
-
-        <p class="venue-city">
-          Самара
-        </p>
-
-        <div class="venue-line"></div>
-
-        <p class="venue-address">
-          Адрес места<br>
-          сообщим дополнительно
-        </p>
-
-        <a
-          class="map-button"
-          id="mapLink"
-          href="https://yandex.ru/maps/"
-          target="_blank"
-          rel="noopener"
-        >
-          ПОСМОТРЕТЬ НА КАРТЕ
-          <span>↗</span>
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         TIMELINE
-    ======================================== -->
-
-    <section class="timeline-section section-paper">
-
-      <div class="section-number">
-        03
-      </div>
-
-      <div class="section-inner">
-
-        <p class="eyebrow">
-          НАШ ДЕНЬ
-        </p>
-
-        <h2>
-          Расписание
-        </h2>
-
-        <p class="section-subtitle">
-          Один день.<br>
-          Так много важных моментов.
-        </p>
-
-
-        <div class="timeline" id="timeline">
-
-          <div class="timeline-track">
-
-            <div class="timeline-progress"></div>
-
-            <div class="timeline-heart">
-              ♥
-            </div>
-
-          </div>
-
-
-          <div class="timeline-items">
-
-            <article class="timeline-item">
-
-              <time>
-                11:30
-              </time>
-
-              <div class="timeline-dot">
-                01
-              </div>
-
-              <div class="timeline-info">
-                <h3>
-                  Сбор гостей
-                </h3>
-
-                <p>
-                  Встречаемся и
-                  настраиваемся на праздник.
-                </p>
-              </div>
-
-            </article>
-
-
-            <article class="timeline-item">
-
-              <time>
-                12:00
-              </time>
-
-              <div class="timeline-dot">
-                02
-              </div>
-
-              <div class="timeline-info">
-                <h3>
-                  Регистрация
-                </h3>
-
-                <p>
-                  Торжественная регистрация
-                  нашего брака.
-                </p>
-              </div>
-
-            </article>
-
-
-            <article class="timeline-item">
-
-              <time>
-                13:00
-              </time>
-
-              <div class="timeline-dot">
-                03
-              </div>
-
-              <div class="timeline-info">
-                <h3>
-                  Отправление
-                </h3>
-
-                <p>
-                  Едем вместе к месту
-                  нашего празднования.
-                </p>
-              </div>
-
-            </article>
-
-
-            <article class="timeline-item">
-
-              <time>
-                15:00
-              </time>
-
-              <div class="timeline-dot">
-                04
-              </div>
-
-              <div class="timeline-info">
-                <h3>
-                  Банкет
-                </h3>
-
-                <p>
-                  Праздничный ужин,
-                  тосты и поздравления.
-                </p>
-              </div>
-
-            </article>
-
-
-            <article class="timeline-item">
-
-              <time>
-                ВЕЧЕР
-              </time>
-
-              <div class="timeline-dot">
-                05
-              </div>
-
-              <div class="timeline-info">
-                <h3>
-                  Вечеринка
-                </h3>
-
-                <p>
-                  Танцы, музыка и
-                  просто хорошо проводим время.
-                </p>
-              </div>
-
-            </article>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         DRESS CODE
-    ======================================== -->
-
-    <section class="dress section-olive">
-
-      <div class="section-number">
-        04
-      </div>
-
-      <div class="section-inner">
-
-        <p class="eyebrow">
-          DRESS CODE
-        </p>
-
-        <h2>
-          Будьте<br>
-          собой
-        </h2>
-
-        <div class="dress-symbol">
-          ✦
-        </div>
-
-        <p class="text">
-          Будем рады видеть вас
-          в элегантных образах.
-          Выбирайте то, в чём вам
-          красиво и комфортно.
-        </p>
-
-        <div class="dress-colors">
-
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-
-        </div>
-
-        <p class="dress-caption">
-          OUR WEDDING PALETTE
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         RSVP
-    ======================================== -->
-
-    <section class="rsvp section-paper">
-
-      <div class="section-number">
-        05
-      </div>
-
-      <div class="section-inner">
-
-        <p class="eyebrow">
-          RSVP
-        </p>
-
-        <h2>
-          Будете<br>
-          с нами?
-        </h2>
-
-        <p class="section-subtitle">
-          Пожалуйста, заполните
-          небольшую анкету.
-        </p>
-
-
-        <form id="rsvp">
-
-          <label>
-            <span>Ваше имя</span>
-            <input
-              type="text"
-              name="name"
-              placeholder="Имя и фамилия"
-              required
-            >
-          </label>
-
-
-          <label>
-            <span>Вы придёте?</span>
-
-            <select
-              name="attendance"
-              required
-            >
-              <option value="">
-                Выберите вариант
-              </option>
-
-              <option value="Да, буду">
-                Да, обязательно буду
-              </option>
-
-              <option value="Не смогу">
-                К сожалению, не смогу
-              </option>
-            </select>
-
-          </label>
-
-
-          <label>
-            <span>Количество гостей</span>
-
-            <select name="guests">
-
-              <option value="1">
-                1
-              </option>
-
-              <option value="2">
-                2
-              </option>
-
-              <option value="3">
-                3
-              </option>
-
-              <option value="4">
-                4
-              </option>
-
-            </select>
-
-          </label>
-
-
-          <label>
-            <span>Питание</span>
-
-            <input
-              type="text"
-              name="food"
-              placeholder="Есть ли особенности?"
-            >
-          </label>
-
-
-          <label>
-            <span>Комментарий</span>
-
-            <textarea
-              name="comment"
-              rows="4"
-              placeholder="Что-нибудь ещё?"
-            ></textarea>
-
-          </label>
-
-
-          <button
-            type="submit"
-            class="submit-button"
-          >
-            ОТПРАВИТЬ ОТВЕТ
-            <span>↗</span>
-          </button>
-
-        </form>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         GUEST CHAT
-    ======================================== -->
-
-    <section class="guest-chat section-olive">
-
-      <div class="chat-inner">
-
-        <span class="chat-symbol">
-          ✦
-        </span>
-
-        <p class="eyebrow">
-          ДЛЯ ГОСТЕЙ
-        </p>
-
-        <h2>
-          Давайте<br>
-          будем на связи
-        </h2>
-
-        <p>
-          Здесь можно будет найти
-          чат для гостей и все
-          важные организационные детали.
-        </p>
-
-        <a
-          href="#"
-          class="chat-button"
-        >
-          ЧАТ ГОСТЕЙ
-          <span>↗</span>
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         COUNTDOWN
-    ======================================== -->
-
-    <section class="countdown-section section-paper">
-
-      <div class="countdown-inner">
-
-        <p class="eyebrow">
-          ДО НАШЕЙ СВАДЬБЫ
-        </p>
-
-        <h2>
-          Осталось
-        </h2>
-
-        <div
-          class="countdown"
-          id="countdown"
-        >
-
-          <div class="count-box">
-            <strong id="countDays">—</strong>
-            <span>дней</span>
-          </div>
-
-          <div class="count-box">
-            <strong id="countHours">—</strong>
-            <span>часов</span>
-          </div>
-
-          <div class="count-box">
-            <strong id="countMinutes">—</strong>
-            <span>минут</span>
-          </div>
-
-          <div class="count-box">
-            <strong id="countSeconds">—</strong>
-            <span>секунд</span>
-          </div>
-
-        </div>
-
-        <div class="countdown-heart">
-          ♥
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================
-         FINAL
-    ======================================== -->
-
-    <section class="final section-dark">
-
-      <div class="final-grain"></div>
-
-      <div class="final-inner">
-
-        <p class="eyebrow">
-          SEE YOU THERE
-        </p>
-
-        <h2>
-          Артём
-          <span>&</span>
-          Варвара
-        </h2>
-
-        <div class="final-divider">
-          <i></i>
-          <b>♥</b>
-          <i></i>
-        </div>
-
-        <p class="final-date">
+        <div class="card-divider"></div>
+        <div class="card-date">
           26 · 05 · 2027
-        </p>
-
-        <p class="final-city">
+        </div>
+        <div class="card-city">
           САМАРА
-        </p>
-
+        </div>
       </div>
-
-    </section>
-
+    </div>
+    <!-- Задняя часть конверта -->
+    <div class="envelope-back"></div>
+    <!-- Бумажный просвет -->
+    <div class="envelope-opening">
+      <div class="paper-edge"></div>
+    </div>
+    <!-- Клапан -->
+    <div class="envelope-flap"></div>
+    <!-- Передняя часть -->
+    <div class="envelope-front">
+      <div class="envelope-fold envelope-fold-left"></div>
+      <div class="envelope-fold envelope-fold-right"></div>
+      <div class="envelope-fold envelope-fold-bottom"></div>
+      <!-- ПЕЧАТЬ -->
+      <button
+        class="wax-seal"
+        id="openEnvelope"
+        type="button"
+        aria-label="Открыть приглашение"
+      >
+        <span class="wax-ring"></span>
+        <span class="wax-symbol">A&nbsp;&amp;&nbsp;V</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="open-caption">
+  <span class="caption-line"></span>
+  <span>нажмите на печать</span>
+  <span class="caption-line"></span>
+</div>
+<div class="intro-bottom">
+  <span>АРТЁМ & ВАРВАРА</span>
+  <span>САМАРА</span>
+</div>
+  </section>
+  <!-- =====================================================
+       ОСНОВНОЙ САЙТ
+       ===================================================== -->
+  <main id="site">
+<!-- HERO -->
+<section class="hero section-paper" id="hero">
+  <div class="paper-decoration paper-decoration-top">
+    ✦
+  </div>
+  <div class="hero-content">
+    <p class="eyebrow">WE ARE GETTING MARRIED</p>
+    <h1>
+      Артём
+      <span>&</span>
+      Варвара
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-date">26 мая 2027</p>
+    <p class="hero-location">САМАРА</p>
+  </div>
+  <div class="paper-decoration paper-decoration-bottom">
+    ✦
+  </div>
+</section>
+<!-- ПРИГЛАШЕНИЕ -->
+<section class="welcome section-paper" id="welcome">
+  <div class="section-inner">
+    <p class="section-kicker">ДОРОГИЕ ГОСТИ</p>
+    <h2>
+      Будем рады
+      <br>
+      разделить этот день
+      <br>
+      с вами
+    </h2>
+    <div class="ornament">✦</div>
+    <p class="welcome-text">
+      Мы решили однажды и навсегда быть вместе.
+      И очень хотим, чтобы в этот день рядом
+      с нами были самые близкие люди.
+    </p>
+    <p class="welcome-signature">
+      Артём & Варвара
+    </p>
+  </div>
+</section>
+<!-- ДАТА -->
+<section class="date-section section-paper" id="date">
+  <div class="section-inner">
+    <p class="section-kicker">ЗАПОМНИТЕ ЭТУ ДАТУ</p>
+    <div class="date-layout">
+      <div class="date-copy">
+        <span class="date-number">26</span>
+        <div class="date-month">
+          МАЯ
+          <br>
+          2027
+        </div>
+      </div>
+      <div
+        class="calendar"
+        id="calendar"
+        aria-label="Календарь свадьбы"
+      ></div>
+    </div>
+    <p class="date-note">
+      Среда · 12:00
+    </p>
+  </div>
+</section>
+<!-- МЕСТО -->
+<section class="venue-section section-dark" id="venue">
+  <div class="venue-image">
+    <div class="venue-image-overlay"></div>
+    <div class="venue-label">
+      <span>01</span>
+      <span>THE PLACE</span>
+    </div>
+    <div class="venue-title">
+      <span>6-25</span>
+    </div>
+  </div>
+  <div class="venue-content">
+    <p class="section-kicker">МЕСТО</p>
+    <h2 class="venue-city">
+      Самара
+    </h2>
+    <p class="venue-address">
+      Самара
+    </p>
+    <a
+      class="map-link"
+      id="mapLink"
+      href="https://yandex.ru/maps/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ПОСМОТРЕТЬ НА КАРТЕ ↗
+    </a>
+  </div>
+</section>
+<!-- ПРОГРАММА -->
+<section class="timeline-section section-paper" id="program">
+  <div class="section-inner">
+    <p class="section-kicker">КАК ПРОЙДЁТ НАШ ДЕНЬ</p>
+    <h2 class="timeline-title">
+      Один день.
+      <br>
+      Столько воспоминаний.
+    </h2>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+<!-- DRESS CODE -->
+<section class="dress-section section-paper" id="dress">
+  <div class="section-inner">
+    <p class="section-kicker">DRESS CODE</p>
+    <h2>
+      Приходите
+      <br>
+      красивыми
+    </h2>
+    <div class="dress-symbol">
+      ✦
+    </div>
+    <p id="dressText">
+      Будем рады видеть вас в элегантных образах.
+      Выбирайте то, в чём вам красиво и комфортно.
+    </p>
+    <div class="dress-colors">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</section>
+<!-- RSVP -->
+<section class="rsvp-section section-dark" id="rsvp-section">
+  <div class="section-inner">
+    <p class="section-kicker">RSVP</p>
+    <h2>
+      Будете
+      <br>
+      с нами?
+    </h2>
+    <p class="rsvp-intro">
+      Пожалуйста, заполните небольшую анкету,
+      чтобы мы могли всё подготовить.
+    </p>
+    <form id="rsvp" class="rsvp-form">
+      <label>
+        <span>Ваше имя</span>
+        <input
+          type="text"
+          name="name"
+          placeholder="Имя и фамилия"
+          autocomplete="name"
+          required
+        >
+      </label>
+      <label>
+        <span>Вы будете?</span>
+        <select name="attendance" required>
+          <option value="" disabled selected>
+            Выберите вариант
+          </option>
+          <option value="Да, обязательно">
+            Да, обязательно ❤️
+          </option>
+          <option value="К сожалению, не смогу">
+            К сожалению, не смогу
+          </option>
+        </select>
+      </label>
+      <label>
+        <span>Количество гостей</span>
+        <select name="guests">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </label>
+      <label>
+        <span>Питание</span>
+        <select name="food">
+          <option value="Без особенностей">
+            Без особенностей
+          </option>
+          <option value="Мясо">
+            Мясо
+          </option>
+          <option value="Рыба">
+            Рыба
+          </option>
+          <option value="Вегетарианское">
+            Вегетарианское
+          </option>
+        </select>
+      </label>
+      <label>
+        <span>Комментарий</span>
+        <textarea
+          name="comment"
+          rows="4"
+          placeholder="Что-нибудь ещё?"
+        ></textarea>
+      </label>
+      <button
+        type="submit"
+        class="rsvp-submit"
+      >
+        ОТПРАВИТЬ ОТВЕТ ↗
+      </button>
+    </form>
+  </div>
+</section>
+<!-- ЧАТ ГОСТЕЙ -->
+<section class="chat-section section-paper" id="chat">
+  <div class="chat-inner">
+    <p class="section-kicker">FOR OUR GUESTS</p>
+    <h2>
+      Чат
+      <br>
+      гостей
+    </h2>
+    <p>
+      Здесь можно будет обсудить детали,
+      познакомиться и просто пообщаться
+      перед праздником.
+    </p>
+    <a
+      href="#"
+      class="chat-button"
+      id="guestChat"
+    >
+      ЧАТ ГОСТЕЙ ↗
+    </a>
+  </div>
+</section>
+<!-- COUNTDOWN -->
+<section class="countdown-section section-dark" id="countdown">
+  <div class="countdown-inner">
+    <p class="section-kicker">
+      ДО НАШЕЙ СВАДЬБЫ ОСТАЛОСЬ
+    </p>
+    <div class="countdown" id="countdownTimer">
+      <div class="countdown-item">
+        <strong id="countDays">000</strong>
+        <span>ДНЕЙ</span>
+      </div>
+      <div class="countdown-divider">:</div>
+      <div class="countdown-item">
+        <strong id="countHours">00</strong>
+        <span>ЧАСОВ</span>
+      </div>
+      <div class="countdown-divider">:</div>
+      <div class="countdown-item">
+        <strong id="countMinutes">00</strong>
+        <span>МИНУТ</span>
+      </div>
+      <div class="countdown-divider">:</div>
+      <div class="countdown-item">
+        <strong id="countSeconds">00</strong>
+        <span>СЕКУНД</span>
+      </div>
+    </div>
+    <div class="countdown-heart">
+      ♥
+    </div>
+  </div>
+</section>
+<!-- ФИНАЛ -->
+<section class="final-section section-paper" id="final">
+  <div class="final-inner">
+    <p class="section-kicker">
+      С ЛЮБОВЬЮ
+    </p>
+    <div class="final-names">
+      <span>Артём</span>
+      <i>&</i>
+      <span>Варвара</span>
+    </div>
+    <div class="final-date">
+      26 · 05 · 2027
+    </div>
+    <div class="final-ornament">
+      ✦
+    </div>
+    <p class="final-text">
+      До встречи на нашей свадьбе.
+    </p>
+  </div>
+</section>
   </main>
-
-
-  <!-- =========================================
+  <!-- =====================================================
        SCRIPTS
-  ========================================== -->
-
+       ===================================================== -->
   <script src="config.js"></script>
   <script src="script.js"></script>
-
 </body>
 </html>
